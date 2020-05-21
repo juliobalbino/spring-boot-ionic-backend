@@ -1,11 +1,11 @@
-package com.juliobalbino.cursomc.config;
+package com.juliobalbino.cursomc.services;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
 import com.juliobalbino.cursomc.domain.Categoria;
 import com.juliobalbino.cursomc.domain.Cidade;
@@ -30,8 +30,8 @@ import com.juliobalbino.cursomc.repositories.PagamentoRepository;
 import com.juliobalbino.cursomc.repositories.PedidoRepository;
 import com.juliobalbino.cursomc.repositories.ProdutoRepository;
 
-@Configuration
-public class Instanciacao implements CommandLineRunner{
+@Service
+public class DBService {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
@@ -60,8 +60,7 @@ public class Instanciacao implements CommandLineRunner{
 	@Autowired 
 	private ItemPedidoRepository itemPedidoRepository;
 	
-	@Override
-	public void run(String... args) throws Exception {
+	public void instantiateTestDatabase() throws ParseException {
 		
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
@@ -160,5 +159,4 @@ public class Instanciacao implements CommandLineRunner{
 		
 		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 	}
-
 }
