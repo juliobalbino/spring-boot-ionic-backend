@@ -18,7 +18,7 @@ import com.juliobalbino.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class PedidoService {
-
+	
 	@Autowired
 	private PedidoRepository repo;
 	
@@ -29,10 +29,10 @@ public class PedidoService {
 	private PagamentoRepository pagamentoRepository;
 	
 	@Autowired
-	private ProdutoService produtoService;
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	@Autowired
-	private ItemPedidoRepository itemPedidoRepository;
+	private ProdutoService produtoService;
 	
 	@Autowired
 	private ClienteService clienteService;
@@ -54,7 +54,7 @@ public class PedidoService {
 		obj.getPagamento().setPedido(obj);
 		if (obj.getPagamento() instanceof PagamentoComBoleto) {
 			PagamentoComBoleto pagto = (PagamentoComBoleto) obj.getPagamento();
-			boletoService.preencherPagamentoComBoleto (pagto, obj.getInstante());
+			boletoService.preencherPagamentoComBoleto(pagto, obj.getInstante());
 		}
 		obj = repo.save(obj);
 		pagamentoRepository.save(obj.getPagamento());
