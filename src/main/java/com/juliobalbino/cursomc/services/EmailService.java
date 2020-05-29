@@ -3,10 +3,12 @@ package com.juliobalbino.cursomc.services;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.stereotype.Service;
 
 import com.juliobalbino.cursomc.domain.Cliente;
 import com.juliobalbino.cursomc.domain.Pedido;
 
+@Service
 public interface EmailService {
 
 	void sendOrderConfirmationEmail(Pedido obj);
